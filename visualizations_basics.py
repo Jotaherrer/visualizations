@@ -55,16 +55,6 @@ plt.savefig('plot_four.png')
 plt.show()
 
 
-#%% LABELS
-hours = list(range(0,24))
-happiness = np.random.randint(5,10,24)
-
-plt.plot(hours,happiness, color='purple', linestyle=':')
-plt.xlabel('Hour of the day')
-plt.ylabel("Level of Happiness")
-plt.title('Analyzing my daily happiness randomness')
-plt.show()
-
 #%% SUBPLOTS => PARAMETERS (number of rows of subplots, number of columns of subplots, index of subplot)
 x = [1,2,3,4]
 y = [2,5,6,3]
@@ -85,21 +75,26 @@ plt.show()
 from matplotlib import pyplot as plt
 
 months = range(12)
-temperature = [36, 36, 39, 52, 61, 72, 77, 75, 68, 57, 48, 48]
-flights_to_hawaii = [1200, 1300, 1100, 1450, 850, 750, 400, 450, 400, 860, 990, 1000]
+temperature = [37, 38, 40, 53, 62, 71, 78, 74, 69, 56, 47, 48]
+flights_to_hawaii = [1100, 1300, 1200, 1400, 800, 700, 450, 500, 450, 900, 950, 1100]
 
+# Create figure:
+fig4 = plt.figure(figsize=(12,6))
+
+# Display the result:
 plt.subplot(1,2,1)
 plt.plot(months,temperature,color='steelblue',linestyle='--')
-plt.xlabel('Month')
+plt.xlabel('Months')
 plt.ylabel('Temperature')
-plt.title('Temperature per month')
+plt.title('Temperature Representation')
 
 plt.subplot(1,2,2)
 plt.plot(months,flights_to_hawaii,color='red',marker='o')
 plt.xlabel('Month')
-plt.ylabel('Flights to Hawaii')
+plt.ylabel('Flights Summary')
 plt.title('Flights per month')
 
+plt.savefig('plot_five.png')
 plt.show()
 
 # %% SUBPLOTS ADJUSTMENT
@@ -136,6 +131,7 @@ plt.subplot(2,2,4)
 plt.plot(x,cubic, color='red', linestyle='--')
 plt.xlabel("Range 2")
 plt.ylabel("Line 2")
+plt.grid()
 
 plt.subplots_adjust(hspace=0.35,bottom=0.2,wspace=0.35)
 plt.show()
@@ -166,7 +162,7 @@ ax.set_xticks([1, 2, 4])
 ax.set_yticks([0.1, 0.6, 0.8])
 ax.set_yticklabels(['10%', '60%', '80%'])
 
-# %% EXAMPLE OF TICKSK AND LABELS
+# %% EXAMPLE OF TICKS AND LABELS
 from matplotlib import pyplot as plt
 
 month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep","Oct", "Nov", "Dec"]
@@ -208,5 +204,27 @@ plt.savefig('winning_word_lengths.png')
 plt.figure(figsize=(7, 3))
 plt.plot(years, power_generated)
 plt.savefig('power_generated.png')
+
+# %% GENERALIZING SUBPLOTS
+
+months = range(12)
+temperature = [36, 36, 39, 52, 61, 72, 77, 75, 68, 57, 48, 48]
+flights_to_hawaii = [1200, 1300, 1100, 1450, 850, 750, 400, 450, 400, 860, 990, 1000]
+
+plt.subplots(nrows=1,
+             ncols=2,
+             sharex=False,
+             sharey=False,
+             squeeze=True,
+             subplot_kw=None,
+             gridspec_kw=None)
+
+plt.subplot(1,2,1)
+plt.plot(months,temperature,color='steelblue',linestyle='--')
+plt.xlabel('Month')
+plt.ylabel('Temperature')
+plt.title('Temperature per month')
+
+plt.show()
 
 # %%

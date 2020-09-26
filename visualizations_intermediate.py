@@ -18,7 +18,7 @@ plt.title('Tea Sales Summary')
 plt.xlabel('Tea Type')
 plt.ylabel('Gross Sales')
 plt.grid(axis='y')
-plt.savefig('first_plot.png')
+plt.savefig('plot_first.png')
 plt.show()
 
 """
@@ -60,3 +60,45 @@ ax2.set_xticks(x_values)
 ax2.set_xticklabels(months)
 plt.subplots_adjust(wspace=0.17)
 plt.show()
+
+"""
+Side-by-side chart / coffee sales
+"""
+drinks = ["cappuccino", "latte", "chai", "americano", "mocha", "espresso"]
+months_sales = ['Jan','Mar','May','Jun','Aug','Oct', 'Dec']
+sales1 = [95, 72, 53, 62, 51, 25]
+sales2 = [62, 81, 34, 62, 35, 42]
+
+fig = plt.figure(figsize=(12,8))
+
+ax3 = plt.subplot()
+ax3.set_xticks(range(1,12,2))
+ax3.set_xticklabels(months_sales)
+
+n = 1
+t = 2
+d = 6
+w = 0.8
+store1_x = [t*element + w*n for element
+             in range(d)]
+plt.bar(store1_x, sales1, color='gray')
+
+n = 2
+t = 2
+d = 6
+w = 0.8
+store2_x = [t*element + w*n for element
+             in range(d)]
+plt.bar(store2_x, sales2, color='purple')
+
+plt.title("Coffee Sales Comparison")
+plt.xlabel("Types of coffees")
+plt.ylabel("Pounds sold")
+plt.legend(labels=drinks, loc='upper right')
+plt.savefig('plot_six.png')
+plt.show()
+
+"""
+STACKED BARS EXAMPLE / grades distribution
+"""
+unit_topics = ['Limits', 'Derivatives', 'Integrals', 'Diff Eq', 'Applications']
