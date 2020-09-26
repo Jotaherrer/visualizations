@@ -99,6 +99,65 @@ plt.savefig('plot_six.png')
 plt.show()
 
 """
-STACKED BARS EXAMPLE / grades distribution
+STACKED BARS EXAMPLE / Sales distribution
 """
-unit_topics = ['Limits', 'Derivatives', 'Integrals', 'Diff Eq', 'Applications']
+import numpy as np
+
+product = ['Computer', 'Keyboard', 'Headset', 'Mouse', 'Monitor']
+sales_c = np.random.randint(1000,3000,5)
+sales_k = np.random.randint(1000,3000,5)
+sales_h = np.random.randint(1000,3000,5)
+sales_m = np.random.randint(1000,3000,5)
+sales_o = np.random.randint(1000,3000,5)
+
+k_bottom = np.add(sales_c, sales_k)
+h_bottom = np.add(k_bottom, sales_h)
+m_bottom = np.add(h_bottom, sales_m)
+
+fig = plt.figure(figsize=(10,8))
+ax5 = plt.subplot()
+
+plt.bar(range(len(sales_c)),sales_c, color='#D50071', label=product[0])
+plt.bar(range(len(sales_k)),sales_k, bottom=sales_c, color='#0040FF',label=product[1])
+plt.bar(range(len(sales_h)),sales_h, bottom=k_bottom, color='#00CA70',label=product[2])
+plt.bar(range(len(sales_m)),sales_m, bottom=h_bottom, color='#C14200',label=product[3])
+plt.bar(range(len(sales_o)),sales_o, bottom=m_bottom, color='#F0C300',label=product[4])
+
+ax5.set_xticks(range(5))
+ax5.set_xticklabels(['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday'])
+plt.legend(loc='best')
+plt.title('Sales Distribution by Product')
+plt.ylabel("Products Sold")
+plt.savefig('plot_seven')
+plt.show()
+
+"""
+PIE CHART / Regional sales
+"""
+region = ['LATAM', 'North America','Europe','Asia','Africa']
+sales = [3500,5500,4800,4500,2500]
+explode_values = [0.1,0.1,0.1,0.1,0.1]
+colors = ['cyan', 'steelblue','orange','blue','yellowgreen']
+
+fig = plt.figure(figsize=(10,8))
+plt.pie(sales, labels=region,autopct='%d%%', colors=colors,explode=explode_values)
+plt.axis('equal')
+plt.title('Global Sales Distribution', fontsize='20')
+plt.savefig('plot_eight.png')
+plt.show()
+
+"""
+HISTOGRAM
+"""
+clients_scoring1 = [62.58, 67.63, 81.37, 52.53, 62.98, 72.15, 59.05, 73.85, 97.24, 76.81, 89.34, 74.44, 68.52, 85.13, 90.75, 70.29, 75.62, 85.38, 77.82, 98.31, 79.08, 61.72, 71.33, 80.77, 80.31, 78.16, 61.15, 64.99, 72.67, 78.94]
+clients_scoring2 = [72.38, 71.28, 79.24, 83.86, 84.42, 79.38, 75.51, 76.63, 81.48,78.81,79.23,74.38,79.27,81.07,75.42,90.35,82.93,86.74,81.33,95.1,86.57,83.66,85.58,81.87,92.14,72.15,91.64,74.21,89.04,76.54,81.9,96.5,80.05,74.77,72.26,73.23,92.6,66.22,70.09,77.2]
+
+fig = plt.figure(figsize=(10,8))
+plt.hist(clients_scoring1,bins=12,linewidth=2, alpha=0.5, color='yellowgreen')
+plt.hist(clients_scoring2,bins=12,linewidth=2, alpha=0.5, color='steelblue')
+plt.legend(['Clients - Group 1', 'Clients - Group 2'])
+plt.title('Credit Scoring by Group of Client', fontsize='15')
+plt.xlabel('Percentage')
+plt.ylabel('Frequency')
+plt.savefig('plot_nine.png')
+plt.show()
