@@ -1,50 +1,59 @@
-#%%
+#%% IMPORTS
 import matplotlib.pyplot as plt
 import numpy as np
 
 #%% FIRST EXAMPLE
 # Days of the week:
-days = [0, 1, 2, 3, 4, 5, 6]
+days = [1, 2, 3, 4, 5, 6,7]
 # Your Money:
-money_spent = [10, 12, 12, 10, 14, 22, 24]
+money_spent = [1000, 1200, 1500, 1080, 1400, 1650, 1350]
 # Your Friend's Money:
-money_spent_2 = [11, 14, 15, 15, 22, 21, 12]
-# Plot your money:
+money_spent_2 = [900, 1500, 1200, 1050, 950, 1250, 1000]
+# Create figure:
+fig = plt.figure(figsize=(10,5))
+# Plot first week expenses:
 plt.plot(days, money_spent)
-# Plot your friend's money:
+# Plot second week expenses
 plt.plot(days, money_spent_2)
 # Display the result:
+plt.title('Company Expenditure Comparison')
+plt.legend(['First week', 'Second week'])
+plt.savefig('plot_second.png')
 plt.show()
 
-#%% LINESTYLE OR MARKER
-x_values=list(range(0,20,2))
-y_values=list(range(0,40,4))
-
-# Dashed:
-plt.plot(x_values, y_values, linestyle='--')
-# Dotted:
-plt.plot(x_values, y_values, linestyle=':')
-# No line:
-plt.plot(x_values, y_values, linestyle='')
-
-# A circle:
-plt.plot(x_values, y_values, marker='o')
-# A square:
-plt.plot(x_values, y_values, marker='s')
-# A star:
-plt.plot(x_values, y_values, marker='*')
-
-## First example's graph:
-plt.plot(days, money_spent, color='purple', linestyle='--')
-plt.plot(days, money_spent_2, color='#AAAAAA',  marker='o')
-
-#%% AXES RANGE => ZOOM IN OR OUT THE GRAPH
-x = list(range(0,100))
-y = list(range(0,200,2))
-
-plt.plot(x,y,color='purple', linestyle='--')
-plt.axis([90,100,175,200])
+#%% SECOND EXAMPLE
+# Create figure:
+fig2 = plt.figure(figsize=(10,5))
+# Plot your money:
+plt.plot(days, money_spent,color='purple', linestyle='--', marker='o')
+# Plot your friend's money:
+plt.plot(days, money_spent_2,color='#045a71', linestyle=':', marker='o')
+# Display the result:
+ax = plt.subplot()
+ax.set_xticks(range(1,8))
+ax.set_xticklabels(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday',' Sunday'])
+plt.title('Company Expenditure Comparison')
+plt.legend(['First week', 'Second week'])
+plt.savefig('plot_three.png')
 plt.show()
+
+#%% THIRD EXAMPLE
+# Create figure:
+fig3 = plt.figure(figsize=(10,5))
+# Plot your money:
+plt.plot(days, money_spent,color='purple', linestyle='--', marker='o')
+# Plot your friend's money:
+plt.plot(days, money_spent_2,color='#045a71', linestyle=':', marker='o')
+# Display the result:
+ax = plt.subplot()
+ax.set_xticks(range(1,8))
+ax.set_xticklabels(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday',' Sunday'])
+plt.title('Monday-Wednesday Company Expenditure')
+plt.legend(['First week', 'Second week'])
+plt.axis([1,3,900,1600])
+plt.savefig('plot_four.png')
+plt.show()
+
 
 #%% LABELS
 hours = list(range(0,24))

@@ -9,6 +9,7 @@ drinks = ["Cappuccino", "Latte", "Chai", "Americano", "Mocha", "Espresso"]
 sales =  [91, 76, 56, 66, 52, 27]
 tea_df = pd.DataFrame(sales, index=drinks, columns=['Total Sales'])
 
+fig = plt.figure(figsize=(14,8))
 plt.bar(range(len(drinks)), sales, color='peru',edgecolor='blue')
 ax = plt.subplot()
 ax.set_xticks(range(6))
@@ -16,6 +17,8 @@ ax.set_xticklabels(drinks)
 plt.title('Tea Sales Summary')
 plt.xlabel('Tea Type')
 plt.ylabel('Gross Sales')
+plt.grid(axis='y')
+plt.savefig('first_plot.png')
 plt.show()
 
 """
