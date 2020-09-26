@@ -4,7 +4,19 @@ import seaborn as sns
 """
 Initial examples
 """
-# Plotting two types of lines in one graph
+# Plotting tea sales
+drinks = ["Cappuccino", "Latte", "Chai", "Americano", "Mocha", "Espresso"]
+sales =  [91, 76, 56, 66, 52, 27]
+tea_df = pd.DataFrame(sales, index=drinks, columns=['Total Sales'])
+
+plt.bar(range(len(drinks)), sales, color='peru',edgecolor='blue')
+ax = plt.subplot()
+ax.set_xticks(range(6))
+ax.set_xticklabels(drinks)
+plt.title('Tea Sales Summary')
+plt.xlabel('Tea Type')
+plt.ylabel('Gross Sales')
+plt.show()
 
 """
 Site traffic graph
