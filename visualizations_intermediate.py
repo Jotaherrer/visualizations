@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import seaborn as sns
+import pandas as pd
 
 """
 Initial examples
@@ -10,14 +10,16 @@ sales =  [91, 76, 56, 66, 52, 27]
 tea_df = pd.DataFrame(sales, index=drinks, columns=['Total Sales'])
 
 fig = plt.figure(figsize=(14,8))
+fig.patch.set_facecolor('xkcd:mint green')
 plt.bar(range(len(drinks)), sales, color='peru',edgecolor='blue')
 ax = plt.subplot()
 ax.set_xticks(range(6))
 ax.set_xticklabels(drinks)
-plt.title('Tea Sales Summary')
-plt.xlabel('Tea Type')
-plt.ylabel('Gross Sales')
-plt.grid(axis='y')
+ax.set_facecolor('xkcd:gray')
+#ax.set_facecolor((1.0, 0.47, 0.42))
+plt.title('Tea Sales Summary', fontsize='15')
+plt.xlabel('Tea Type', fontsize='15')
+plt.ylabel('Gross Sales', fontsize='15')
 plt.savefig('plot_first.png')
 plt.show()
 
@@ -136,7 +138,7 @@ PIE CHART / Regional sales
 """
 region = ['LATAM', 'North America','Europe','Asia','Africa']
 sales = [3500,5500,4800,4500,2500]
-explode_values = [0.1,0.1,0.1,0.1,0.1]
+explode_values = [0,0.1,0,0,0]
 colors = ['cyan', 'steelblue','orange','blue','yellowgreen']
 
 fig = plt.figure(figsize=(10,8))
@@ -160,4 +162,43 @@ plt.title('Credit Scoring by Group of Client', fontsize='15')
 plt.xlabel('Percentage')
 plt.ylabel('Frequency')
 plt.savefig('plot_nine.png')
+plt.show()
+
+"""
+Stacked Plot
+"""
+import numpy as np
+year = pd.DataFrame(range(2013,2021),columns=['Year'])
+volume1 = pd.DataFrame([1000,1100,1200,1250,1300,1350,1400,1450], columns=['Values 1'])
+volume2 = pd.DataFrame([1000,900,800,700,600,500,400,300], columns=['Values 2'])
+volume3 = pd.DataFrame([1000,950,900,850,800,750,700,650], columns=['Values 3'])
+
+frames = [year,volume1, volume2, volume3]
+frame = pd.concat(frames,axis=1)
+x_values = frame['Year']
+y_values = np.vstack([frame['Values 1'], frame['Values 2'], frame['Values 3']])
+
+labels = ['Company A', 'Company B', 'Company C']
+colors = ['skyblue', 'peru', 'gray']
+
+fig = plt.figure(figsize=(10,8))
+plt.stackplot(x_values, y_values, labels=labels, colors=colors,edgecolor='black')
+plt.title('Market Share Evolution',fontsize=15)
+plt.ylabel('Share', fontsize=15)
+plt.legend(loc='best')
+plt.savefig('plot_ten.png')
+plt.show()
+
+"""
+Percentage Stacked Area Plot
+"""
+fig = plt.figure(figsize=(12,10))
+percentage = frame.divide(frame.loc[:,['Values 1', 'Values 2', 'Values 3']].sum(axis=1), axis=0)
+
+plt.stackplot(x_values, percentage['Values 1'], percentage['Values 2'], percentage['Values 3'],
+              edgecolor='black', colors=colors, labels=labels)
+plt.title('Market Share Evolution',fontsize=15)
+plt.ylabel('Share', fontsize=15)
+plt.legend(loc='best', bbox_to_anchor=(1.12,0.5))
+plt.savefig('plot_eleven.png')
 plt.show()
